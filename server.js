@@ -2,12 +2,20 @@ const express = require('express');
 const morgan = require('morgan');
 const dotenv = require('dotenv').config({ path: './config/.env' });
 
-const books = require('./routes/books');
+const books = require('./routes/booksRoutes');
 
 const app = express();
 
+// Connection to DB
+const connectDB = require('./config/connectDB');
+connectDB();
+
 app.use(express.json());
 
+// Morgan console
+app.use(morgan('dev'));
+
+// Routes 
 app.use('/books', books);
 
 const port = process.env.PORT || 5000;
