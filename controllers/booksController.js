@@ -9,15 +9,12 @@ exports.createBook = asyncHandler(async(req, res) => {
     res.status(400).json({ success: false, data: {} });
   };
 
-  res.status(201).json({ success: true, data: {} });
+  res.status(201).json({ success: true, count: books.length, data: book });
 });
 
 // GET ALL BOOKS
 exports.getAllBooks = asyncHandler(async(req, res) => {
-  const book = await Book.findById(req.params.id);
-  if (!book) {
-    res.status(400).json({ success: false, data: {} });
-  };
+  const books = await Book.find(req.params.id);
 
-  res.status(201).json({ success: true, data: book });
+  res.status(201).json({ success: true, data: books });
 });
