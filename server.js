@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const dotenv = require('dotenv').config({ path: './config/.env' });
+const cors = require('cors');
 
 const books = require('./routes/booksRoutes');
 
@@ -11,7 +12,7 @@ const connectDB = require('./config/connectDB');
 connectDB();
 
 app.use(express.json());
-
+app.use(cors());
 // Morgan console
 app.use(morgan('dev'));
 
