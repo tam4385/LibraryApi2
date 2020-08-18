@@ -7,11 +7,13 @@ const books = require('./routes/booksRoutes');
 
 const app = express();
 
+app.use(express.json({ limit: '50mb', extended: true }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
+
 // Connection to DB
 const connectDB = require('./config/connectDB');
 connectDB();
 
-app.use(express.json());
 app.use(cors());
 // Morgan console
 app.use(morgan('dev'));
