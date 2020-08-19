@@ -13,5 +13,14 @@ exports.createBook = asyncHandler(async(req, res) => {
 exports.getAllBooks = asyncHandler(async(req, res) => {
   const books = await Book.find();
 
-  res.status(201).json({ success: true, data: books });
+  res.status(200).json({ success: true, data: books });
+});
+
+// DELETE BOOK
+
+exports.deleteBook = asyncHandler(async(req, res) => {
+  console.log('in controller')
+  await Book.findByIdAndDelete(req.params.bookId);
+
+  res.status(201).json({ success: true, data: {} })
 });
