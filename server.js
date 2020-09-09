@@ -15,8 +15,9 @@ const connectDB = require('./config/connectDB');
 connectDB();
 
 app.use(cors());
+
 // Morgan console
-app.use(morgan('dev'));
+if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
 
 // Routes 
 app.use('/books', books);

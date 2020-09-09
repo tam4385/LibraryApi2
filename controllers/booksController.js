@@ -16,6 +16,20 @@ exports.getAllBooks = asyncHandler(async(req, res) => {
   res.status(200).json({ success: true, data: books });
 });
 
+// UPDATE BOOK
+exports.updateBook = asyncHandler(async(req, res) => {
+  let book = await Book.findById(req.params.book);
+  const bookFields = req.body;
+
+  if (!book) {
+    console.log('No book found');
+    res.status(400).json({ success: false, msg: 'Book not found' });
+  };
+
+  book = await Book.findByIdAndUpdate(req.params.book, bookFields);
+
+});
+
 // DELETE BOOK
 
 exports.deleteBook = asyncHandler(async(req, res) => {
