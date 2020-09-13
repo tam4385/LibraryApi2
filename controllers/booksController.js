@@ -18,23 +18,22 @@ exports.getAllBooks = asyncHandler(async(req, res) => {
 
 // UPDATE BOOK
 exports.updateBook = asyncHandler(async(req, res) => {
-  let book = await Book.findById(req.params.book);
+  console.log('route')
+  let book = await Book.findById(req.params.bookId);
   const bookFields = req.body;
 
   if (!book) {
-    console.log('No book found');
     res.status(400).json({ success: false, msg: 'Book not found' });
   };
 
-  book = await Book.findByIdAndUpdate(req.params.book, bookFields);
-
+  await Book.findByIdAndUpdate(req.params.bookId, bookFields);
+  res.status(201).json({ success: true });
 });
 
 // DELETE BOOK
 
 exports.deleteBook = asyncHandler(async(req, res) => {
-  console.log('in controller')
   await Book.findByIdAndDelete(req.params.bookId);
 
-  res.status(201).json({ success: true, data: {} })
+  res.status(201).json({ success: true, data: {} });
 });

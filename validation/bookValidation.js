@@ -1,20 +1,23 @@
-const { validationResult, check } = require('express-validator');
+const { validationResult, check, oneOf } = require('express-validator');
+const asyncHandler = require('../middleware/asyncHandler');
 
 // Update Book Validation
-exports.updateValidation = () => {
-  return ([
-    check('title', 'A title is required').exists(),
-    check('author', 'An author is required').exists(),
-    check('genre', 'A genre is required').exists(),
-    check('format', 'A book format is required').exists(),
-    check('releaseDate', 'A release data is required').exists()
-  ]), async (req, res) => {
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    };
-
-    next();
-  };
-};
+// exports.updateValidation = () => {
+//   // return oneOf([
+//   //   [
+//   //   check('title').exists(),
+//   //   check('author').exists(),
+//   //   check('genre').exists(),
+//   //   check('format').exists(),
+//   //   check('releaseDate').exists(),
+//   //   ]
+//   ], asyncHandler, async (req, res, next) => {
+//   //   console.log('after valid')
+//   //   const errors = validationResult(req);
+//   //   if (!errors.isEmpty()) {
+//   //     return res.status(400).json({ errors: errors.array() });
+//   //   };
+//   //   console.log('hello')
+//     return next();
+//   });
+// };

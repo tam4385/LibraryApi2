@@ -9,7 +9,7 @@ router.get('/', booksController.getAllBooks);
 
 router.post('/', booksController.createBook);
 
-router.put('/:book', validation.updateValidation, booksController.updateBook);
+router.put('/:bookId', booksController.updateBook);
 
 router.delete('/:bookId', booksController.deleteBook);
 
