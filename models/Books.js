@@ -24,6 +24,16 @@ const bookSchema = new Schema({
         type: String,
         required: [true, 'Please enter a release date for your book']
     },
+    read: {
+        type: String,
+        default: 'false'   
+    },
+    comments: {
+        type: String
+    },
+    rating: {
+        type: String
+    },
     createdAt: {
         type: Date,
         default: Date.now
