@@ -7,6 +7,8 @@ const booksController = require('../controllers/booksController');
 
 router.get('/', booksController.getAllBooks);
 
+router.get('/:bookId', booksController.getBook);
+
 router.post('/', booksController.createBook);
 
 router.put('/:bookId', booksController.updateBook);

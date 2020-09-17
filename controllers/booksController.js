@@ -16,6 +16,17 @@ exports.getAllBooks = asyncHandler(async(req, res) => {
   res.status(200).json({ success: true, data: books });
 });
 
+// GET SINGLE BOOK
+exports.getBook = asyncHandler(async(req, res) => {
+  const book = await Book.findById(req.params.bookId);
+
+  if (!book) {
+    return res.status(401).json({ success: false });
+  };
+
+  return res.status(200).json({ success: true, data: book });
+});
+
 // UPDATE BOOK
 exports.updateBook = asyncHandler(async(req, res) => {
   console.log('route')
